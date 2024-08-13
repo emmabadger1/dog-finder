@@ -1,0 +1,944 @@
+{
+  "version": "2.2.0",
+  "summary": {
+    "title": "Report of Found Dog",
+    "owner": "",
+    "description": "",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "New STRIDE diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 150,
+              "y": 180
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Dog finder"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "id": "559bf429-d83d-471a-bbd2-f903638928a2",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Dog finder",
+              "description": "Member of the public who finds a lost dog",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "fa00cb3d-ccd4-45c0-be3e-70d1ff7ffba3",
+                  "title": "Impersonation",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "T1656 Attacker pretends to be member of public and submits fake reports of found dogs, leads to council performing incorrect actions",
+                  "mitigation": "Multi-factor authentication to verify identity of users before allowing them to submit reports\nMonitor traffic and system activity ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "c74073da-fd06-4230-b2cf-795d7e7945ab",
+                  "title": "Indicator removal",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "T1070 - Attackers can delete or modify logs of user action to remove evidence of their presence which interferes with event reporting or monitoring of malicious activity",
+                  "mitigation": "M1041 - Encrypt Sensitive information: Encrypt event files locally and in transit to avoid giving feedback to the attacker\nM1029 - Remote Data Storage: Forward events to log server or data repository that prevents conditions in which attacker can manipulate the data on the local system, minimise time delay on event reporting - so not stored long on local system",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 650,
+              "y": 270
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Report Found Dog"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 2,
+            "id": "fe9c4ab4-7138-4a2a-b2b2-477469393de4",
+            "data": {
+              "type": "tm.Process",
+              "name": "Report Found Dog",
+              "description": "Member of public reports found dogs",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "7ca49c49-a285-443f-9d93-adc245b6d04a",
+                  "title": "Domain Spoofing",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Attacker can create a domain similar to council website/dog registration system and host a fake 'report found dog' page where users unknowingly submit information, which gives the attacker access to sensitive data or ability to submit fake reports",
+                  "mitigation": "Monitor and take down malicious domains, educate users on recognising legitimate URLs",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                },
+                {
+                  "id": "900285f2-5d33-4213-be10-98e837b880c1",
+                  "title": "Bypass User Account Control ",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "T1548.002 Attackers can bypass User Account Control mechanisms to elevate priveleges on system - if the user is only supposed to report found dogs but they gain the ability to alter registration data.",
+                  "mitigation": "M1052 User Account control - implement account controls to limit scope of what each user role can do\nRTole-based access control - each user role has strict permissions and is limited to necessary functionalities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                },
+                {
+                  "id": "5380f462-9e5a-48f3-8feb-d8b5154819f2",
+                  "title": "Intercepted and modified data",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker intercepts and modifies data submitted by dog finder through the reporting form which leads to incorrect data recorded in system such as a false report of a found dog",
+                  "mitigation": "Use HTTPS: Ensure that all communications between the dog finder device and the council’s system are encrypted using HTTPS.\nImplement input validation by sanitising the inputs and doing data integrity checks",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": ""
+                },
+                {
+                  "id": "3ea5d711-2399-4f3f-9598-f78d1b1a63b8",
+                  "title": "Deny having reported finding dog",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Dog finder claims they haven't reported the found dog",
+                  "mitigation": "Logging and monitoring user events to trace session id, timestamp, and user\nSend confirmation email of dog found report",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": ""
+                },
+                {
+                  "id": "5808c2e9-da54-4182-b023-d9a726c8fb25",
+                  "title": "Network denial of service",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "T1498 - Network denial of service: attackers exhaust the web-based application by submitting multiple false reports of finding dogs (excessive traffic), overwhelming the system so that the system becomes unresponsive",
+                  "mitigation": "Implement rate limiting so only a certain number of requests can be made by a certain ip for a certain period of time",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": ""
+                },
+                {
+                  "id": "f1386e1d-4377-4bac-987b-d937b83ddccc",
+                  "title": "Exposure of sensitive data during transmission",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "T1071.001 - Application Layer protocol: Web Protocols - attacker exploits insecure communication protocol to intercept sensitive info such as dog's location or tag ID",
+                  "mitigation": "Use HTTPS to secure all data transmissions between client and server",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 38,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "de148290-e989-4e15-a554-067a5b4f8141",
+            "source": {
+              "x": 590,
+              "y": 80
+            },
+            "target": {
+              "x": 510,
+              "y": 600
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Email to owner",
+              "description": "Contact owner about found dog",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "7661850f-e0ec-41b7-b70d-11da4710e0c0",
+                  "title": "Transmitted data manipulation",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "T1565.002 Transmitted Data Manipulation: attacker intercepts and manipulates email content sent by the council to the dog owner - could change the email to contain incorrect information about where dog is located or fake/fraudulent contact information",
+                  "mitigation": "M1041 - Encrypt sensitive information in emails\nUse digital signatures for dog owners to identify the content hasn't been intercepted and altered",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                },
+                {
+                  "id": "bb0f635b-b109-427e-900d-1ffa3636468a",
+                  "title": "Disclosure of sensitive email",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "If attacker intercepts email with dog owner's contact details, dog's location, they can access and misuse the information. If email sent over unencrypted connection it is vulnerable to eavesdropping.",
+                  "mitigation": "Transport Layer Security (TLS): Ensure that all emails are transmitted over secure channels using TLS to encrypt the communication between the council's email server and the owner's email provider\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "08558166-2c74-4a8e-8d38-01122db5051e",
+            "labels": [
+              "Email to owner"
+            ],
+            "source": {
+              "cell": "5d2a1cbf-d553-4b63-8542-ca488f280666"
+            },
+            "target": {
+              "cell": "66282380-460b-453c-9931-1ca045674dae"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Email address matching tag ID",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "8718735c-46c6-4f9f-a044-4f4229818559",
+                  "title": "Manipulation of Ownership records",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker could tamper with the data fetched from the database and alter the records to falsely claim dog or change the registered owner's address, email etc",
+                  "mitigation": "Audit logs: maintain detailed audit logs tracking any changes in data store records including timestamp and who made changes\nImplement strict access controls to limit who can modify ownership records in system",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "15ffbce5-73bd-4a9c-866d-5c3e22e71969",
+            "labels": [
+              "Email address matching tag ID"
+            ],
+            "source": {
+              "cell": "cd39857b-1e3e-4b16-a580-acc15a5962f4"
+            },
+            "target": {
+              "cell": "5d2a1cbf-d553-4b63-8542-ca488f280666"
+            },
+            "vertices": [
+              {
+                "x": 820,
+                "y": 430
+              },
+              {
+                "x": 770,
+                "y": 463
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Found Dog Info",
+              "description": "Dog services receives the address and tag ID of found dog to go pick it up",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "2b3c5139-dc5c-43f0-9893-ba50e16ff0f0",
+                  "title": "Network Traffic interception",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "T1557 - Adversary-in-the-middle - adversaries position themselves between two networked devices and can intercept, or modify the information sent to dog services",
+                  "mitigation": "M1041 Encrypt Sensitive information: Ensure all traffic is encrypted\nM1035 Limit access to Resource Over Network: Limit access to network infrastructure and resources that can reshape traffic or produce AiTM conditions",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                },
+                {
+                  "id": "00fadcf7-cc4c-4b34-9779-deb6805d989d",
+                  "title": "Steal session cookie",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports",
+                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "866b69a7-dd6b-4252-8412-fb90132c3fbd",
+            "labels": [
+              "Found Dog Info"
+            ],
+            "source": {
+              "cell": "fe9c4ab4-7138-4a2a-b2b2-477469393de4"
+            },
+            "target": {
+              "cell": "67f262e8-cce4-4733-bbe5-7db019e13b1d"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Found Dog information",
+              "description": "Input dog's tag ID and physical address where dog currently located",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "0c8c1fae-9c90-432a-aeb0-aa03c9eb268f",
+                  "title": "Steal web session Cookie",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports",
+                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                },
+                {
+                  "id": "174e8099-05bc-4901-8f21-074b69a83424",
+                  "title": "Exposure of sensitive data during transmission",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "T1071.001 - Application Layer protocol: Web Protocols - attacker exploits insecure communication protocol to intercept sensitive info such as dog's location or tag ID",
+                  "mitigation": "Use HTTPS to secure all data transmissions between client and server",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                },
+                {
+                  "id": "3593e27b-09af-46c3-93ac-e3b8376ff397",
+                  "title": "Network denial of service",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "T1498 - Network denial of service: attackers exhaust the web-based application by submitting multiple false reports of finding dogs (excessive traffic), overwhelming the system so that the system becomes unresponsive",
+                  "mitigation": "Implement rate limiting - restrict number of requests a single IP address can make in period of time",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "8beb631e-6af4-4364-a4f2-1009905da5a5",
+            "labels": [
+              "Found Dog information"
+            ],
+            "source": {
+              "cell": "559bf429-d83d-471a-bbd2-f903638928a2"
+            },
+            "target": {
+              "cell": "fe9c4ab4-7138-4a2a-b2b2-477469393de4"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tag ID of found dog",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "777da6b3-7c56-4a7f-b5b2-04aacd22fc6d",
+                  "title": "Interception of dog tag ID",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "T1557 - Adversary-in-the-middle - adversaries position themselves between two networked devices and can intercept the tag ID inputted by the council and read it",
+                  "mitigation": "M1041 Encrypt Sensitive information: Ensure all traffic is encrypted\nM1035 Limit access to Resource Over Network: Limit access to network infrastructure and resources that can reshape traffic or produce AiTM conditions",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                },
+                {
+                  "id": "96c69840-4ee5-4bcf-aae1-912e45fad932",
+                  "title": "Network denial of service",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "T1498 - Network denial of service: attackers exhaust the web-based application by submitting multiple false tag IDs (excessive traffic), overwhelming the system so that the system becomes unresponsive",
+                  "mitigation": "Implement rate limiting - restrict number of requests that a single IP can make in a certain period of time",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                },
+                {
+                  "id": "f4d44e13-2df2-4d64-92f9-1ffefbd31758",
+                  "title": "Stealing web session cookie",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports of the tag ID of the found dog",
+                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "7ff7dd1d-1f18-4dc4-96e5-fd9088a32f39",
+            "labels": [
+              "Tag ID of found dog"
+            ],
+            "source": {
+              "cell": "1be4f3d7-b901-4492-978f-a6b9a6e7592c"
+            },
+            "target": {
+              "cell": "5d2a1cbf-d553-4b63-8542-ca488f280666"
+            },
+            "vertices": [
+              {
+                "x": 430,
+                "y": 520
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 150,
+              "y": 310
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Dog Services"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 11,
+            "id": "67f262e8-cce4-4733-bbe5-7db019e13b1d",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Dog Services",
+              "description": "People who go find and pick up lost dogs",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "0b00844e-58eb-4564-a2ba-ae51ded9226d",
+                  "title": "Impersonation",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Attacker impersonates the dog services, can gain unauthorised access to sensitive information like a lost dog's location and tag ID",
+                  "mitigation": "- Multi-factor authentication of dog services accounts",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                },
+                {
+                  "id": "0c2a5a4a-5754-4b8a-bc99-1b2a1bfb39b6",
+                  "title": "Denial of Actions",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Dog services user could deny/forget having taken specific actions within system such as updating status of a found dog or accessing found dog information which undermines integrity of system and trust in actions taken by Dog services",
+                  "mitigation": "Comprehensive logging of all actions tajken by users including timestamps, user IDs and events occurring",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 150,
+              "y": 544
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Council"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 12,
+            "id": "1be4f3d7-b901-4492-978f-a6b9a6e7592c",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Council",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "2b09fd5b-af2e-4a6f-876d-6f29037a8ac0",
+                  "title": "Phishing",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Phishing - attacker emails dog owners pretending to be from the Council with malicious link where dog owners input their info such as email address, tag ID, making them vulnerable",
+                  "mitigation": "M1017 User Training - Users can be trained to identify social engineering techniques and phishing emails.\nM1054 Software Configuration - Use anti-spoofing and email authentication mechanisms to filter messages based on validity checks of the sender domain (using SPF) and integrity of messages\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "e6cddec9-7eea-4fc2-a6aa-b8452febe591",
+                  "title": "Denial of triggering email notification",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Council member denies having input a dog tag ID to trigger a notification of dog being found to their owner, this could cause delays in returning dog to owner, and trust issues with system's reliability",
+                  "mitigation": "Maintain secure logs recording user events and actions within system - which account inputted a tag ID, timestamp etc",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 650,
+              "y": 430
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Returning lost dog"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 13,
+            "id": "5d2a1cbf-d553-4b63-8542-ca488f280666",
+            "data": {
+              "type": "tm.Process",
+              "name": "Returning lost dog",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "72efabdd-f05f-46d2-bc79-2f75f58d29b4",
+                  "title": "Domain spoofing",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Attacker can create a domain similar to council website/dog registration system and host a fake 'report found dog' page where users unknowingly submit information, which gives the attacker access to sensitive data or ability to submit fake reports",
+                  "mitigation": "Monitor and take down malicious domains, educate users on recognising legitimate URLs",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": ""
+                },
+                {
+                  "id": "d546b736-52a2-438b-b27c-5d001b49027b",
+                  "title": "Stealing session cookies",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports of the tag ID of the found dog",
+                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                },
+                {
+                  "id": "816ded25-8203-46c8-9259-a5a15141a00f",
+                  "title": "Dog owner denies receiving email notification of found dog",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Dog owner denies receiving email notification of dog being found by council - this could lead to disputes over the notification being successfully delivered which creates issues in trust of the system.",
+                  "mitigation": "Include acknowledgement link in email for owner to confirm they have received the email\nMaintain secure logs recording when emails are sent, to whom it was sent, and whether it delivered successfully",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": ""
+                },
+                {
+                  "id": "f73391f5-251e-4155-929a-deeb96bd259c",
+                  "title": "Endpoint denial of service",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "T1499 - Endpoint denial of service: attackers exhaust the web-based application or exploit the system to cause a persistent crash condition",
+                  "mitigation": "M1037 Filter Network Traffic - Filter boundary traffic by blocking source addresses sourcing the attack, blocking ports that are being targeted, or blocking protocols being used for transport.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 34,
+                  "score": ""
+                },
+                {
+                  "id": "9fbae07e-af05-4ff6-8f6c-fd1312bf9f33",
+                  "title": "Impersonation of council through email",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker could manipulate the system and then impersonate the council, send fraudulent emails to the owner, or modify records to change the tag ID or its associated email address. This could lead to the wrong individual being contacted, or enable the attacker to intercept the recovery process.",
+                  "mitigation": "Role-based access control - only authorised personnel can access/modify specific\nEnsure that all input fields, particularly those involving tag IDs and email addresses, are properly validated to prevent injection attacks that could elevate privileges",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 35,
+                  "score": ""
+                },
+                {
+                  "id": "28e06daf-7ddf-4c99-997c-11e9eb652d04",
+                  "title": "Adversary-in-the-middle",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "T1557 - Adversary-in-the-middle - adversaries position themselves between two networked devices and can intercept the tag ID inputted by the council and read it",
+                  "mitigation": "M1041 Encrypt Sensitive information: Ensure all traffic is encrypted\nM1035 Limit access to Resource Over Network: Limit access to network infrastructure and resources that can reshape traffic or produce AiTM conditions",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 36,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 900,
+              "y": 350
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Dog data store"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 14,
+            "id": "cd39857b-1e3e-4b16-a580-acc15a5962f4",
+            "data": {
+              "type": "tm.Store",
+              "name": "Dog data store",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 150,
+              "y": 430
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Dog Owner"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "66282380-460b-453c-9931-1ca045674dae",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Dog Owner",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "15b79842-df3a-45cc-b085-ee1be4eac013",
+                  "title": "Denial of receiving email",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Dog owner denies receiving email notification of dog being found by council - this could lead to disputes over the notification being successfully delivered which creates issues in trust of the system.",
+                  "mitigation": "Include a confirmation link in the emails - the owner must click to acknowledge the receipt\nMaintain secure logs recording when emails are sent, to whom it was sent, and whether it delivered successfully",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                },
+                {
+                  "id": "0a615a1a-2067-4b35-bd8b-ff1a53a8ef5a",
+                  "title": "Impersonation",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Attacker impersonates dog owner by using their email address to contact the council. Eg could claim dog has already been found, intercepting and ending the communication process",
+                  "mitigation": "- Ensure multi factor authentication is enabled - verify email with confirmation code\n- Monitor all interactions with the system to look for suspicious activity",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 38
+  }
+}
