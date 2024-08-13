@@ -133,7 +133,7 @@
                   "severity": "Medium",
                   "type": "Elevation of privilege",
                   "description": "T1548.002 Attackers can bypass User Account Control mechanisms to elevate priveleges on system - if the user is only supposed to report found dogs but they gain the ability to alter registration data.",
-                  "mitigation": "M1052 User Account control - implement account controls to limit scope of what each user role can do\nRTole-based access control - each user role has strict permissions and is limited to necessary functionalities.",
+                  "mitigation": "M1052 User Account control - implement account controls to limit scope of what each user role can do\nRole-based access control - each user role has strict permissions and is limited to necessary functionalities.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 9,
@@ -180,7 +180,7 @@
                 },
                 {
                   "id": "f1386e1d-4377-4bac-987b-d937b83ddccc",
-                  "title": "Exposure of sensitive data during transmission",
+                  "title": "Exposure of sensitive data",
                   "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Information disclosure",
@@ -443,89 +443,6 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Found Dog information",
-              "description": "Input dog's tag ID and physical address where dog currently located",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "0c8c1fae-9c90-432a-aeb0-aa03c9eb268f",
-                  "title": "Steal web session Cookie",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports",
-                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 4,
-                  "score": ""
-                },
-                {
-                  "id": "174e8099-05bc-4901-8f21-074b69a83424",
-                  "title": "Exposure of sensitive data during transmission",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "T1071.001 - Application Layer protocol: Web Protocols - attacker exploits insecure communication protocol to intercept sensitive info such as dog's location or tag ID",
-                  "mitigation": "Use HTTPS to secure all data transmissions between client and server",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 7,
-                  "score": ""
-                },
-                {
-                  "id": "3593e27b-09af-46c3-93ac-e3b8376ff397",
-                  "title": "Network denial of service",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "T1498 - Network denial of service: attackers exhaust the web-based application by submitting multiple false reports of finding dogs (excessive traffic), overwhelming the system so that the system becomes unresponsive",
-                  "mitigation": "Implement rate limiting - restrict number of requests a single IP address can make in period of time",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 21,
-                  "score": ""
-                }
-              ]
-            },
-            "id": "8beb631e-6af4-4364-a4f2-1009905da5a5",
-            "labels": [
-              "Found Dog information"
-            ],
-            "source": {
-              "cell": "559bf429-d83d-471a-bbd2-f903638928a2"
-            },
-            "target": {
-              "cell": "fe9c4ab4-7138-4a2a-b2b2-477469393de4"
-            },
-            "vertices": []
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
               "name": "Tag ID of found dog",
               "description": "",
               "outOfScope": false,
@@ -593,6 +510,89 @@
                 "y": 520
               }
             ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Found Dog information",
+              "description": "Input dog's tag ID and physical address where dog currently located",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "0c8c1fae-9c90-432a-aeb0-aa03c9eb268f",
+                  "title": "Steal web session Cookie",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports",
+                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                },
+                {
+                  "id": "174e8099-05bc-4901-8f21-074b69a83424",
+                  "title": "Exposure of sensitive data during transmission",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "T1071.001 - Application Layer protocol: Web Protocols - attacker exploits insecure communication protocol to intercept sensitive info such as dog's location or tag ID",
+                  "mitigation": "Use HTTPS to secure all data transmissions between client and server",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                },
+                {
+                  "id": "3593e27b-09af-46c3-93ac-e3b8376ff397",
+                  "title": "Network denial of service",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "T1498 - Network denial of service: attackers exhaust the web-based application by submitting multiple false reports of finding dogs (excessive traffic), overwhelming the system so that the system becomes unresponsive",
+                  "mitigation": "Implement rate limiting - restrict number of requests a single IP address can make in period of time",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "8beb631e-6af4-4364-a4f2-1009905da5a5",
+            "labels": [
+              "Found Dog information"
+            ],
+            "source": {
+              "cell": "559bf429-d83d-471a-bbd2-f903638928a2"
+            },
+            "target": {
+              "cell": "fe9c4ab4-7138-4a2a-b2b2-477469393de4"
+            },
+            "vertices": []
           },
           {
             "position": {
