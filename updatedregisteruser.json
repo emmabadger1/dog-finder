@@ -1,0 +1,1598 @@
+{
+  "version": "2.2.0",
+  "summary": {
+    "title": "SENG406 - A1",
+    "owner": "Team 10",
+    "description": "The system under study is a web-based application designed to register dogs in order to get their identification\ntags, as well as the management and traceability of dogs. Owners can register their dogs, and receive or renew their\nunique tags delivered by the Council. Dogs can be declared lost or found, and owners can terminate a registration\nbefore its expiration date.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Dog Registration",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 40,
+              "y": 170
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Dog Owner"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "id": "9e6273e6-b36e-4c79-b8fe-d24d4b774cc4",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Dog Owner",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "deb37e42-8176-46a0-bb25-f6f0e9ad321e",
+                  "title": "Deny Invoice Reception",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The user can pretend to never have received the invoice requiring them to pay for their dog registration.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "a217d36b-7cda-4c59-982d-5cd1004206ae",
+                  "title": "Submitting of false personal details",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Submitting false personal details\n",
+                  "mitigation": "Implement email confirmation links to verify the legitimacy of the registration request.\nRequire the use of a identity verification service (Such as RealMe within NZ)",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 63,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 540,
+              "y": 110
+            },
+            "size": {
+              "width": 210,
+              "height": 160
+            },
+            "attrs": {
+              "text": {
+                "text": "Register a Dog\n/\nRenew dog Registration"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 2,
+            "id": "845fe736-4738-4ebf-82e2-343944c1eb61",
+            "data": {
+              "type": "tm.Process",
+              "name": "Register a Dog\n/\nRenew dog Registration",
+              "description": "Action to register a dog to the application - user is already logged in",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "9c263713-e864-48ba-a53c-330d2ba783f0",
+                  "title": "Flooding of requests from same IP",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Many register requests per second coming from the same IP.",
+                  "mitigation": "- Enable a CAPTCHA-like feature\n- Disallow multiple requests from same origin IP (IP blocking after multiple calls)",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                },
+                {
+                  "id": "3c60389f-04b7-4b97-894b-16c49c5c4b5a",
+                  "title": "Impersonation",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "A user only needs an email to register dog. This makes it possible for a user to register a dog under somebody else's email.",
+                  "mitigation": "- Multi-factor Authentication\n\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                },
+                {
+                  "id": "6543165c-6550-48ff-80a7-7dbcb770054a",
+                  "title": "SQL Injection",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Users are able to inject SQL statements to be run on the systems database. ",
+                  "mitigation": "- Use Prepared Statements and Parameterised Queries\n- Validate and Sanitise Input\n- Use ORM Libraries\n- Limit Database Privileges",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 46,
+                  "score": ""
+                },
+                {
+                  "id": "2eed67b8-7735-4666-b699-5581b2e38aab",
+                  "title": "Code injection used to extract information",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Code injection is used to extract information passed through this service",
+                  "mitigation": "- Ensure that all inputs are validated against a set of predefined rules. \n- Ensure that API endpoints require privilege to use",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 77,
+                  "score": ""
+                },
+                {
+                  "id": "5dfe4cb1-8cb8-4af9-91cd-b143919f14e1",
+                  "title": "Bypass user account control",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "T1548.002 Attacker can bypass User account control mechanisms to elevate their privileges on a system - if the user is only supposed to register dog and owner information but they gain the ability to alter registration data ",
+                  "mitigation": "M1052 user Account control - implement account controls to limit scope of what each user role can do\nRole-based access control - each user has strict permissions and is limited to necessary functionalities",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 78,
+                  "score": ""
+                },
+                {
+                  "id": "fdf9f276-9be0-47d9-b784-f3bc3e4bc3b2",
+                  "title": "Logs may be altered or deleted by users or attackers to cover their tracks.",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Logs may be altered or deleted by users or attackers to cover their tracks. Making it difficult to provide an accurate account of actions or transactions.",
+                  "mitigation": "- Use logging systems that support Write-Once, Read-Many (WORM) storage, where logs can be written but not altered or deleted.\n- Maintain regular backups of log data to ensure that historical logs can be recovered if tampered with.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 79,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Registration Number and Expiry\n\n",
+              "description": "Upon completion\nof the registration process, the owner receives a unique registration number, and an expiry date for the registration",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "31cbb6b9-0237-4293-9364-cf6b85b0b793",
+                  "title": "Registration confirmation can be modified",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "The registration number is used to identify the payment for a dogs registration. The modification of this number could result in payment misclassification.",
+                  "mitigation": "- Use TLS to encrypt communications",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 38,
+                  "score": ""
+                },
+                {
+                  "id": "4a6ef31d-1634-40b0-a971-225772993a1b",
+                  "title": "Registration confirmation details can be stolen",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Unique registration number, and an expiry date for the registration could be obtained through an AiTM attack. \n",
+                  "mitigation": "- Use TLS to encrypt communications",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 66,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "c4b6a68b-ac27-42d8-85b6-9045c66d764b",
+            "labels": [
+              "Registration Number and Expiry\n\n"
+            ],
+            "source": {
+              "cell": "845fe736-4738-4ebf-82e2-343944c1eb61"
+            },
+            "target": {
+              "cell": "9e6273e6-b36e-4c79-b8fe-d24d4b774cc4"
+            },
+            "vertices": [
+              {
+                "x": 340,
+                "y": 290
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Invoice",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "dd048e12-c0a1-42b3-ba20-70e29f03cf55",
+                  "title": "Modification of Invoice Information",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An adversary in the middle could potentially intercept the invoice being sent back to the user, modifying key information such as the bank account to send the money too.",
+                  "mitigation": "- Use TLS to encrypt email communications.\n- Educate users and administrators about potential tampering threats and best practices for handling sensitive information securely.\n- Implement checksums or hashes to verify the integrity of the data received.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 53,
+                  "score": ""
+                },
+                {
+                  "id": "4b4f9947-d70d-41ac-9bd5-f81f0b83d3d7",
+                  "title": "Interception of Invoice",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An adversary in the middle could intercept the invoice and gather information about the user and their dog registration.",
+                  "mitigation": "- Encrypt the PDF invoices to protect the contents from unauthorised access.\n- Use Transport Layer Security (TLS) for the communication.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 56,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "9ce8b85e-040d-4da3-b132-349cf7ead851",
+            "labels": [
+              "Invoice"
+            ],
+            "source": {
+              "cell": "845fe736-4738-4ebf-82e2-343944c1eb61"
+            },
+            "target": {
+              "cell": "9e6273e6-b36e-4c79-b8fe-d24d4b774cc4"
+            },
+            "vertices": [
+              {
+                "x": 340,
+                "y": 195.5
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Renewal Information",
+              "description": "Contains:\nLatest tag ID, \nThe address to deliver the new tag to",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "a9fb85c2-607f-4418-a2c7-117aaa2ef8ac",
+                  "title": "Personal data can be stolen",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An adversary in the middle can steal the personal data of the user (User Id linked to account most recent Tag ID).",
+                  "mitigation": "- Use Transport Layer Security (TLS) for the communication.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": ""
+                },
+                {
+                  "id": "52b0f4db-75cb-46c3-a728-34b0888e3304",
+                  "title": "Personal data can be modified",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An adversary in the middle could intercept the request and modify the information provided by the dog owner.",
+                  "mitigation": "- Use Transport Layer Security (TLS) for the communication.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                },
+                {
+                  "id": "f845e083-6ee3-4024-a27d-7968e837e418",
+                  "title": "Flooding of requests from same IP",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "A flooding of requests can lead to overwhelming the network bandwidth and slowing down transmission times.",
+                  "mitigation": "- Implement rate limiting\n- Implement traffic monitoring on the data flow to prevent or mitigate excessive data submissions\n- M1050 Web Application Firewalls may be used to limit exposure of applications to prevent exploit traffic from reaching the application.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "b36404fc-3b89-48bc-915f-44931afd25e6",
+            "labels": [
+              "Renewal Information"
+            ],
+            "source": {
+              "x": 112,
+              "y": 230
+            },
+            "target": {
+              "cell": "845fe736-4738-4ebf-82e2-343944c1eb61"
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": 380
+              },
+              {
+                "x": 470,
+                "y": 320
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Notification of Registration",
+              "description": "Once a dog owner has registered their dog, the council must be notified in order to send the owner their new dog tag. This would include a tag ID and address for sending the tafg ",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "39a72279-0cc8-4a3f-9199-2cdd2849ed1d",
+                  "title": "Modification of tag delivery details",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "AiTM attack could occur altering the details in order for a tag to be sent to an illegitimate address",
+                  "mitigation": "- Use Transport Layer Security (TLS) for the communication.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 73,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "45b5bdaf-ed43-4aff-b77b-6eb27fc49da3",
+            "labels": [
+              "Notification of Registration"
+            ],
+            "source": {
+              "cell": "845fe736-4738-4ebf-82e2-343944c1eb61"
+            },
+            "target": {
+              "cell": "9c797fff-e815-470c-8415-b7deb876ee5c"
+            },
+            "vertices": [
+              {
+                "x": 500,
+                "y": 430
+              },
+              {
+                "x": 460,
+                "y": 470
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "e13c884f-8b0b-475f-af20-4fe714f43d29",
+            "source": {
+              "x": 550,
+              "y": -150
+            },
+            "target": {
+              "x": 680,
+              "y": 460
+            },
+            "vertices": [
+              {
+                "x": 470,
+                "y": 210
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Dog information and Tag ID",
+              "description": "See \"Dog Information\" with an addition of the newly generated Tag ID",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "5e15cdbc-29a2-4dcd-ae01-1aee2430fb41",
+            "labels": [
+              "Dog information and Tag ID"
+            ],
+            "source": {
+              "cell": "845fe736-4738-4ebf-82e2-343944c1eb61"
+            },
+            "target": {
+              "cell": "a7bfe4cf-cdeb-4e44-a3ac-3f84da043db5"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Dog information",
+              "description": "Name\nBreed\n",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "a9fb85c2-607f-4418-a2c7-117aaa2ef8ac",
+                  "title": "Personal data can be stolen",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An adversary in the middle can steal the name and breed information of the dog.",
+                  "mitigation": "- Use Transport Layer Security (TLS) for the communication.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": ""
+                },
+                {
+                  "id": "52b0f4db-75cb-46c3-a728-34b0888e3304",
+                  "title": "Dog registration data can be modified",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An adversary in the middle could intercept the request and modify the dog information provided by the dog owner.",
+                  "mitigation": "- Use Transport Layer Security (TLS) for the communication.\n- Implement checksums or hashes to verify the integrity of the data received.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                },
+                {
+                  "id": "f845e083-6ee3-4024-a27d-7968e837e418",
+                  "title": "Flooding of requests from same IP",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "A flooding of requests can lead to overwhelming the network bandwidth and slowing down transmission times.",
+                  "mitigation": "- Implement rate limiting\n- Implement traffic monitoring on the data flow to prevent or mitigate excessive data submissions\n- M1050 Web Application Firewalls may be used to limit exposure of applications to prevent exploit traffic from reaching the application.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "84622470-0594-4b96-812a-885fc6f6308f",
+            "labels": [
+              "Dog information"
+            ],
+            "source": {
+              "cell": "9e6273e6-b36e-4c79-b8fe-d24d4b774cc4"
+            },
+            "target": {
+              "cell": "845fe736-4738-4ebf-82e2-343944c1eb61"
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": 110
+              },
+              {
+                "x": 370,
+                "y": 110
+              },
+              {
+                "x": 460,
+                "y": 130
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Personal information",
+              "description": "Email\nName (pronoun, first and last)\nPassword\nAddress",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "a37b00df-cdae-4844-8670-7515a98013c2",
+                  "title": "Adversary in the middle attack",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker can intercept the registration request and modify the user's personal information",
+                  "mitigation": "- Use Transport Layer Security (TLS) for the communication.\n- Implement checksums or hashes to verify the integrity of the data received.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 81,
+                  "score": ""
+                },
+                {
+                  "id": "3ce7d7a2-9578-4c9a-8e20-cdf591b5328d",
+                  "title": "Exposure of personal information",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An adversary in the middle can steal the name, email, and address information of the dog owner.",
+                  "mitigation": "- Encrypt the information sent in payload - TLS",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 82,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "91513386-95e8-4beb-94ea-a5e363f8d960",
+            "source": {
+              "cell": "9e6273e6-b36e-4c79-b8fe-d24d4b774cc4"
+            },
+            "target": {
+              "cell": "27d115b9-5685-4a0e-aa3d-2e1b77defda7"
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": 2.5
+              }
+            ],
+            "labels": [
+              "Personal information"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Personal information",
+              "description": "See \"Personal information\"",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "e8923041-f74b-46f2-b400-923bd4cb9a0c",
+            "source": {
+              "cell": "27d115b9-5685-4a0e-aa3d-2e1b77defda7"
+            },
+            "target": {
+              "cell": "a7bfe4cf-cdeb-4e44-a3ac-3f84da043db5"
+            },
+            "vertices": [
+              {
+                "x": 920,
+                "y": 30
+              }
+            ],
+            "labels": [
+              "Personal information"
+            ]
+          },
+          {
+            "position": {
+              "x": 990,
+              "y": 160
+            },
+            "size": {
+              "width": 150,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Application Data Store"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 11,
+            "id": "a7bfe4cf-cdeb-4e44-a3ac-3f84da043db5",
+            "data": {
+              "type": "tm.Store",
+              "name": "Application Data Store",
+              "description": "This database contains all application data (Owner and Dog data)",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "0dabd8ca-0c70-47fc-9d99-47688bb7b1e5",
+                  "title": "Datastore unwanted access",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "The datastore must be access-protected to only authorised personnel. ",
+                  "mitigation": "- Datastore credentials are securely stored on password vaults with limited set of users having access (apply least privilege principle).\n- Datastore credentials are injected into connecting software from secured variables or files (apply least privilege principle).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                },
+                {
+                  "id": "a60acccb-6a9b-470d-b534-de9bd8b24c09",
+                  "title": "Request Overload",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Attackers might overload the datastore with excessive requests or queries, causing it to become unavailable or degrade performance.",
+                  "mitigation": "- Implement rate limiting and throttling to manage request loads\n- Use load balancers to distribute traffic\n- Monitor for unusual patterns of activity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": ""
+                },
+                {
+                  "id": "299a4d22-97a9-410d-9143-25b272efa81c",
+                  "title": "Computationally Expensive Queries",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Through the use of SQL Injection, attackers could potentially force the database to run computationally expensive queries, hogging resources and slowing down response times.",
+                  "mitigation": "- Implement timeouts for extremely long running queries\n- Implement logging to aid in debugging and attack identification for development team",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 55,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 180,
+              "y": 440
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Council"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 12,
+            "id": "9c797fff-e815-470c-8415-b7deb876ee5c",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Council",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 600,
+              "y": -170
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "On-premise secure infrastructure"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "zIndex": 13,
+            "id": "da242db8-1541-48f0-81f8-c06a5a174d8d",
+            "data": {
+              "type": "tm.Text",
+              "name": "On-premise secure infrastructure",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 491.25,
+              "y": -79.99999999999929
+            },
+            "size": {
+              "width": 330,
+              "height": 150
+            },
+            "attrs": {
+              "text": {
+                "text": "Register User Account"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "27d115b9-5685-4a0e-aa3d-2e1b77defda7",
+            "zIndex": 14,
+            "data": {
+              "type": "tm.Process",
+              "name": "Register User Account",
+              "description": "A dog owner registers on the system for a user account, in future when they log in they can then register dogs to link to their account",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "e89f8519-877e-4ae8-b9da-cc44d7988993",
+                  "title": "User upgrades their account privileges",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "A user could exploit vulnerabilities in the registration process by injecting malicious code or modifying data sent to the server (such as cookies or HTTP headers). This could allow them to elevate their privileges during account creation, potentially granting themselves unauthorised capabilities, such as sending emails on behalf of the council.",
+                  "mitigation": "- Session and Cookie Security\n- Auditing and Logging to allow council maintainers to track suspicious activity\n- Use HTTPS to make it harder to guess and inject cookies",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 84,
+                  "score": ""
+                },
+                {
+                  "id": "49f6e9ad-a4d0-4986-8d3f-a8f13b471ff6",
+                  "title": "Code Injection",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker could inject malicious code into a system through input fields, headers, cookies, or other data entry points, to alter the intended behaviour of the application.",
+                  "mitigation": "- Input validation and Sanitisation (Front end and back end)\n- Paremertised Queries\n- Content Security Policy",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 85,
+                  "score": ""
+                },
+                {
+                  "id": "dc3a42c8-96ed-4429-83d1-ded41f5672a8",
+                  "title": "Logs may be altered or deleted by users or attackers to cover their tracks.",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Logs may be altered or deleted by users or attackers to cover their tracks. Making it difficult to provide an accurate account of actions or transactions.",
+                  "mitigation": "- Use logging systems that support Write-Once, Read-Many (WORM) storage, where logs can be written but not altered or deleted.\n- Maintain regular backups of log data to ensure that historical logs can be recovered if tampered with.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 86,
+                  "score": ""
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": 0,
+        "title": "Terminate Dog Registration",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 190,
+              "y": 180
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Dog owner"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "id": "351d47d6-450a-4355-9510-15f1141634e8",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Dog owner",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "6f022dcb-b6c5-4b32-b5a1-794f1062e9fc",
+                  "title": "User Impersonation for Termination",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker attempts to impersonate a legitimate user to terminate a dog's registration, potentially causing harm by falsely unregistering the dog.",
+                  "mitigation": "- Implement multi-factor authentication (MFA) to verify the identity of users.\n- Use email verification requiring the user to click a confirmation link to complete the termination.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "5bc8a7d5-7202-47da-80c7-33a90f974f6a",
+                  "title": "Denial of Initiating Registration Termination",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": " The dog owner claims they did not request the termination of the dog’s registration, leading to disputes or fraudulent claims.",
+                  "mitigation": "- Maintain detailed logs of all actions taken by the dog owner, including timestamps and IP addresses.\n- MFA to confirm user's identitiy\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 640,
+              "y": 170
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Terminate a registration"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 2,
+            "id": "fc24ec1e-84a4-4f8d-b6b5-81528f5b3472",
+            "data": {
+              "type": "tm.Process",
+              "name": "Terminate a registration",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "24000a3c-2b37-48df-9cd4-7f567b7a07ad",
+                  "title": "Denial of Termination Activity",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "A user denies having terminated a dog's registration, potentially leading to disputes or fraud.",
+                  "mitigation": "- Implement detailed logging of termination requests, including user IDs, timestamps, and IP addresses.\n- Send confirmation emails for all termination actions and log these communications.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "ca54d1de-29ca-4b57-ae2e-0955972492a5",
+                  "title": "Unauthorized Access to Termination Data",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker accesses sensitive user data during the termination process, such as personal information or dog details, leading to a privacy breach.",
+                  "mitigation": "- Use role-based access control (RBAC) to restrict who can access termination processes and related data.\n- Encrypt sensitive data both in transit (using HTTPS) and at rest to prevent unauthorized access.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                },
+                {
+                  "id": "caa6349d-d42f-4a14-816e-f1eaebc224c7",
+                  "title": " Service Overload on Termination",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker overwhelms the termination service with excessive requests, making it unavailable to legitimate users.",
+                  "mitigation": "- Implement rate limiting to control the number of requests a user can make.\n- Use a web application firewall (WAF) to detect and block patterns indicative of DoS attacks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                },
+                {
+                  "id": "693c624b-69af-40eb-880b-0363f212cf1e",
+                  "title": "Privilege Escalation for Unauthorized Termination",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker gains elevated privileges and uses them to terminate registrations they should not have access to, bypassing normal controls.",
+                  "mitigation": "- Enforce the principle of least privilege (PoLP) so that users only have the permissions necessary for their role.\n- Regularly audit user roles and permissions, and review security logs for unusual activity.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                },
+                {
+                  "id": "8a612f48-5771-4d22-878e-f786e21f9680",
+                  "title": "Fake Termination Process",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker creates a fake termination process to trick users into submitting termination information, which is then used for malicious purposes.",
+                  "mitigation": "Review MFA actions alongside authentication logs to ensure that MFA-based logins are functioning as intended. Review user accounts to ensure that all accounts have MFA enabled.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                },
+                {
+                  "id": "a7a8a5e8-baeb-40f6-8db3-e27865ce72f9",
+                  "title": " Modification of Termination Request",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker alters the termination request after it has been submitted but before it is processed, changing the request details.",
+                  "mitigation": "Use secure communication channels and implement checksums or digital signatures to ensure data integrity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Termination information\n",
+              "description": "- email address\n- tag id\n- dog's name",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "eda0b7cd-6cf5-43ce-b10b-cee2b841a016",
+                  "title": "Data Tampering During Termination",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker intercepts and modifies the data in transit during the termination request, altering the outcome without the user's consent.\n",
+                  "mitigation": "- Use HTTPS to encrypt all data transmitted between the client and server.\n- Implement data integrity checks (e.g., hashing) to detect any unauthorized changes.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                },
+                {
+                  "id": "2c16ffeb-ba27-4126-a66c-a0f5a280f9bb",
+                  "title": "Exposure of Termination Information",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": " The termination information is exposed to attackers during transmission, leading to a breach of privacy.",
+                  "mitigation": "Encrypt sensitive information",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                },
+                {
+                  "id": "18730817-a025-4bdf-b131-d1ead15fb45c",
+                  "title": "Blocking Termination Information Flow",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker disrupts the flow of termination information, preventing it from reaching the termination process.",
+                  "mitigation": "Filter boundary traffic by blocking source addresses sourcing the attack, blocking ports that are being targeted, or blocking protocols being used for transport. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "4e13cf8c-9d52-4e83-819f-735cda62983c",
+            "labels": [
+              "Termination information\n"
+            ],
+            "source": {
+              "cell": "351d47d6-450a-4355-9510-15f1141634e8"
+            },
+            "target": {
+              "x": 640,
+              "y": 190
+            },
+            "vertices": [
+              {
+                "x": 400,
+                "y": 100
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Email Address\nTag ID\nDog's Name",
+              "description": "Email Address\nTag ID\nDog's Name",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "a4230c38-bfb4-458e-8be0-b2dcfda8d48c",
+                  "title": "Modification of Termination Data in Transit",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker intercepts the termination data in transit to the data store and modifies it, potentially changing the outcome of the process.",
+                  "mitigation": "Encrypt the termination data during transmission and use message authentication codes (MACs) or digital signatures to ensure data integrity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                },
+                {
+                  "id": "67c889c2-3313-4145-a18f-956c7fe165cc",
+                  "title": "Exposure of Termination Data During Transmission",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker intercepts and gains access to sensitive termination data as it is being sent to the data store, leading to a breach of confidentiality.",
+                  "mitigation": "Use end-to-end encryption for all communications between the process and the data store to prevent unauthorized access to the data.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                },
+                {
+                  "id": "7bc280e1-afa3-46c6-8345-d71e2649d97b",
+                  "title": "Overloading the Data Transmission Process",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker sends a large number of fake or malformed termination requests, overwhelming the system and preventing legitimate termination data from being processed.",
+                  "mitigation": "Implement rate limiting, input validation, and anomaly detection to identify and block suspicious or excessive requests.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "c6d67b24-5ad9-4451-bc7d-f0e446230929",
+            "source": {
+              "x": 700,
+              "y": 198
+            },
+            "target": {
+              "cell": "a5945117-d2bb-40f5-b794-d5aa50197cc2"
+            },
+            "labels": [
+              "Email Address\nTag ID\nDog's Name"
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "9591fbaa-7b07-4254-8a37-eb3c84788f64",
+            "source": {
+              "x": 680,
+              "y": 20
+            },
+            "target": {
+              "x": 730,
+              "y": 440
+            },
+            "vertices": [
+              {
+                "x": 530,
+                "y": 220
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Confirmation Email",
+              "description": "Contains a link to the registration process ",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "45d9dd0f-83c3-4371-9989-0162f9d4f610",
+                  "title": "Information Disclosure",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": " The confirmation email containing sensitive information is intercepted and read by an unauthorized party.",
+                  "mitigation": "Use email encryption (e.g., TLS) to protect the content of the confirmation email during transmission.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                },
+                {
+                  "id": "16573101-b1c4-48fa-a884-6a11b1da37e7",
+                  "title": "Exposure of Email Content",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker intercepts the confirmation email, gaining access to sensitive information contained within.",
+                  "mitigation": "Encrypt the email content and use secure communication channels to prevent unauthorized access.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                },
+                {
+                  "id": "bb5e2404-72fd-4a6d-bb89-8bc85f908a3f",
+                  "title": "Disruption of Email Delivery",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker disrupts the email delivery system, preventing the dog owner from receiving the confirmation email.",
+                  "mitigation": "Implement redundancy and failover mechanisms to ensure that termination information can still be processed even during disruptions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "8e2eadc1-daf1-4022-897a-f4a8ed1eb985",
+            "labels": [
+              "Confirmation Email"
+            ],
+            "source": {
+              "cell": "fc24ec1e-84a4-4f8d-b6b5-81528f5b3472"
+            },
+            "target": {
+              "cell": "351d47d6-450a-4355-9510-15f1141634e8"
+            },
+            "vertices": [
+              {
+                "x": 540,
+                "y": 350
+              },
+              {
+                "x": 400,
+                "y": 370
+              },
+              {
+                "x": 310,
+                "y": 330
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 1073,
+              "y": 170
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Dog Data Store\n"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 11,
+            "id": "a5945117-d2bb-40f5-b794-d5aa50197cc2",
+            "data": {
+              "type": "tm.Store",
+              "name": "Dog Data Store\n",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "a2166fa9-6f9f-45bf-95db-d4ec31d5b1cc",
+                  "title": "Data Tampering",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "The termination information stored in the dog data store is altered without authorization.",
+                  "mitigation": " Implement access controls and data integrity checks to ensure the termination data cannot be tampered with post-storage.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                },
+                {
+                  "id": "06c175f9-c611-419e-99a8-1a84c2e42a9c",
+                  "title": "Denial of Data Manipulation",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": " An attacker or insider claims that data was not manipulated or accessed, leading to challenges in proving unauthorized actions.",
+                  "mitigation": "Implement detailed logging and monitoring systems to track all access and modifications to the data store, providing a comprehensive audit trail.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                },
+                {
+                  "id": "518e331b-3c17-46a9-aabc-680f29cfe2d5",
+                  "title": "Unauthorised Data Retrieval",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker exploits vulnerabilities to gain access to sensitive information within the dog data store, leading to a breach of privacy.",
+                  "mitigation": "Encrypt sensitive data at rest, enforce strict access controls, and regularly audit access logs to detect and respond to unauthorized access attempts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                },
+                {
+                  "id": "58d9fbd9-a839-4693-82af-8dd3e52dcdd4",
+                  "title": "Data Store Overload or Corruption",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker floods the data store with requests or corrupts the database, causing service disruption or data unavailability.",
+                  "mitigation": "Implement robust backup and recovery mechanisms, rate limiting, and input validation to ensure the data store remains resilient against attacks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": ""
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "diagramTop": 3,
+    "reviewer": "",
+    "threatTop": 87
+  }
+}
