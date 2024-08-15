@@ -195,29 +195,6 @@
             }
           },
           {
-            "shape": "trust-boundary-curve",
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Boundary",
-              "name": "",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            },
-            "id": "de148290-e989-4e15-a554-067a5b4f8141",
-            "source": {
-              "x": 590,
-              "y": 80
-            },
-            "target": {
-              "x": 510,
-              "y": 600
-            }
-          },
-          {
             "shape": "flow",
             "attrs": {
               "line": {
@@ -284,6 +261,172 @@
             },
             "target": {
               "cell": "66282380-460b-453c-9931-1ca045674dae"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tag ID of found dog",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "777da6b3-7c56-4a7f-b5b2-04aacd22fc6d",
+                  "title": "Interception of dog tag ID",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "T1557 - Adversary-in-the-middle - adversaries position themselves between two networked devices and can intercept the tag ID inputted by the council and read it",
+                  "mitigation": "M1041 Encrypt Sensitive information: Ensure all traffic is encrypted\nM1035 Limit access to Resource Over Network: Limit access to network infrastructure and resources that can reshape traffic or produce AiTM conditions",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                },
+                {
+                  "id": "96c69840-4ee5-4bcf-aae1-912e45fad932",
+                  "title": "Network denial of service",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "T1498 - Network denial of service: attackers exhaust the web-based application by submitting multiple false tag IDs (excessive traffic), overwhelming the system so that the system becomes unresponsive",
+                  "mitigation": "Implement rate limiting - restrict number of requests that a single IP can make in a certain period of time",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                },
+                {
+                  "id": "f4d44e13-2df2-4d64-92f9-1ffefbd31758",
+                  "title": "Stealing web session cookie",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports of the tag ID of the found dog",
+                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "7ff7dd1d-1f18-4dc4-96e5-fd9088a32f39",
+            "labels": [
+              "Tag ID of found dog"
+            ],
+            "source": {
+              "cell": "1be4f3d7-b901-4492-978f-a6b9a6e7592c"
+            },
+            "target": {
+              "cell": "5d2a1cbf-d553-4b63-8542-ca488f280666"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Found Dog information",
+              "description": "Input dog's tag ID and physical address where dog currently located",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "0c8c1fae-9c90-432a-aeb0-aa03c9eb268f",
+                  "title": "Steal web session Cookie",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports",
+                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                },
+                {
+                  "id": "174e8099-05bc-4901-8f21-074b69a83424",
+                  "title": "Exposure of sensitive data during transmission",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "T1071.001 - Application Layer protocol: Web Protocols - attacker exploits insecure communication protocol to intercept sensitive info such as dog's location or tag ID",
+                  "mitigation": "Use HTTPS to secure all data transmissions between client and server",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                },
+                {
+                  "id": "3593e27b-09af-46c3-93ac-e3b8376ff397",
+                  "title": "Network denial of service",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "T1498 - Network denial of service: attackers exhaust the web-based application by submitting multiple false reports of finding dogs (excessive traffic), overwhelming the system so that the system becomes unresponsive",
+                  "mitigation": "Implement rate limiting - restrict number of requests a single IP address can make in period of time",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "8beb631e-6af4-4364-a4f2-1009905da5a5",
+            "labels": [
+              "Found Dog information"
+            ],
+            "source": {
+              "cell": "559bf429-d83d-471a-bbd2-f903638928a2"
+            },
+            "target": {
+              "cell": "fe9c4ab4-7138-4a2a-b2b2-477469393de4"
             },
             "vertices": []
           },
@@ -374,7 +517,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "Found Dog Info",
-              "description": "Dog services receives the address and tag ID of found dog to go pick it up",
+              "description": "Dog services receives an email with the address and tag ID of found dog to go pick it up",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -424,175 +567,31 @@
             "vertices": []
           },
           {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
+            "shape": "trust-boundary-curve",
             "width": 200,
             "height": 100,
             "zIndex": 10,
             "connector": "smooth",
             "data": {
-              "type": "tm.Flow",
-              "name": "Tag ID of found dog",
+              "type": "tm.Boundary",
+              "name": "",
               "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "777da6b3-7c56-4a7f-b5b2-04aacd22fc6d",
-                  "title": "Interception of dog tag ID",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "T1557 - Adversary-in-the-middle - adversaries position themselves between two networked devices and can intercept the tag ID inputted by the council and read it",
-                  "mitigation": "M1041 Encrypt Sensitive information: Ensure all traffic is encrypted\nM1035 Limit access to Resource Over Network: Limit access to network infrastructure and resources that can reshape traffic or produce AiTM conditions",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 19,
-                  "score": ""
-                },
-                {
-                  "id": "96c69840-4ee5-4bcf-aae1-912e45fad932",
-                  "title": "Network denial of service",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "T1498 - Network denial of service: attackers exhaust the web-based application by submitting multiple false tag IDs (excessive traffic), overwhelming the system so that the system becomes unresponsive",
-                  "mitigation": "Implement rate limiting - restrict number of requests that a single IP can make in a certain period of time",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 22,
-                  "score": ""
-                },
-                {
-                  "id": "f4d44e13-2df2-4d64-92f9-1ffefbd31758",
-                  "title": "Stealing web session cookie",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports of the tag ID of the found dog",
-                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 24,
-                  "score": ""
-                }
-              ]
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
             },
-            "id": "7ff7dd1d-1f18-4dc4-96e5-fd9088a32f39",
-            "labels": [
-              "Tag ID of found dog"
-            ],
+            "id": "de148290-e989-4e15-a554-067a5b4f8141",
             "source": {
-              "cell": "1be4f3d7-b901-4492-978f-a6b9a6e7592c"
+              "x": 590,
+              "y": 80
             },
             "target": {
-              "cell": "5d2a1cbf-d553-4b63-8542-ca488f280666"
+              "x": 500,
+              "y": 670
             },
-            "vertices": [
-              {
-                "x": 430,
-                "y": 520
-              }
+            "vertices": [],
+            "labels": [
+              ""
             ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Found Dog information",
-              "description": "Input dog's tag ID and physical address where dog currently located",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "0c8c1fae-9c90-432a-aeb0-aa03c9eb268f",
-                  "title": "Steal web session Cookie",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Attacker steals session cookies using cross-site scripting and can impersonate legitimate user and modify reports",
-                  "mitigation": "Use secure cookie attributes\nM1054 Security Configuration - configure browser to regularly delete persistent cookies, minimise length of time cookie is viable, reduces impact of stolen cookies",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 4,
-                  "score": ""
-                },
-                {
-                  "id": "174e8099-05bc-4901-8f21-074b69a83424",
-                  "title": "Exposure of sensitive data during transmission",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "T1071.001 - Application Layer protocol: Web Protocols - attacker exploits insecure communication protocol to intercept sensitive info such as dog's location or tag ID",
-                  "mitigation": "Use HTTPS to secure all data transmissions between client and server",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 7,
-                  "score": ""
-                },
-                {
-                  "id": "3593e27b-09af-46c3-93ac-e3b8376ff397",
-                  "title": "Network denial of service",
-                  "status": "Mitigated",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "T1498 - Network denial of service: attackers exhaust the web-based application by submitting multiple false reports of finding dogs (excessive traffic), overwhelming the system so that the system becomes unresponsive",
-                  "mitigation": "Implement rate limiting - restrict number of requests a single IP address can make in period of time",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 21,
-                  "score": ""
-                }
-              ]
-            },
-            "id": "8beb631e-6af4-4364-a4f2-1009905da5a5",
-            "labels": [
-              "Found Dog information"
-            ],
-            "source": {
-              "cell": "559bf429-d83d-471a-bbd2-f903638928a2"
-            },
-            "target": {
-              "cell": "fe9c4ab4-7138-4a2a-b2b2-477469393de4"
-            },
-            "vertices": []
           },
           {
             "position": {
@@ -657,8 +656,8 @@
           },
           {
             "position": {
-              "x": 150,
-              "y": 544
+              "x": 262.5,
+              "y": 620
             },
             "size": {
               "width": 112.5,
@@ -932,6 +931,30 @@
                   "score": ""
                 }
               ]
+            }
+          },
+          {
+            "position": {
+              "x": 623.75,
+              "y": 40
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "On-premise Secure Infrastructure"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "1c1060c8-6d70-4364-b4d6-667d1b42c946",
+            "zIndex": 16,
+            "data": {
+              "type": "tm.Text",
+              "name": "On-premise Secure Infrastructure",
+              "hasOpenThreats": false
             }
           }
         ]
